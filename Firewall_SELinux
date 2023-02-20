@@ -1,0 +1,15 @@
+    =====Settingan Firewall  Mohamad Restu Zikri Novdian=====
+    firewall-cmd --add-port 80/tcp --permanent
+    firewall-cmd --add-port 443/tcp --permanent
+    firewall-cmd --add-port 8000/tcp --permanent
+    firewall-cmd --add-port 3000/tcp --permanent
+    firewall-cmd --reload
+     
+    =====Settingan SELinux  Mohamad Restu Zikri Novdian=====
+    semanage port -a -t http_port_t -p tcp 443
+    semanage port -a -t http_port_t -p tcp 80
+    semanage port -a -t http_port_t -p tcp 8000
+    semanage port -a -t http_port_t -p tcp 3000
+    semanage boolean -m --on httpd_can_network_connect
+    semanage fcontext -a -t httpd_sys_content_t "/root/a387-jarkom-labs(/.*)?"
+    restorecon -Rv /root/a387-jarkom-labs
